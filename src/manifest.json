@@ -1,0 +1,28 @@
+{
+    "name": "DotNet Issue Area Predictor",
+    "version": "0.0.0.1",
+    "manifest_version": 3,
+    "description": "An extension to predict issue area labels on GitHub.",
+    "icons": {
+        "16": "icons/labelicon_16x16.png",
+        "32": "icons/labelicon_32x32.png",
+        "48": "icons/labelicon_48x48.png",
+        "128": "icons/labelicon_128x128.png"
+    },
+    "action": {
+        "default_popup": "popup/popup.html"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "content-scripts/content.js"
+            ]
+        }
+    ]
+}
