@@ -83,6 +83,11 @@ function getCurrentUrlMetadata() {
 function currentPageIsValidForPredictions() {
     var urlMetadata = getCurrentUrlMetadata();
 
+    if (!urlMetadata)
+    {
+        return false;
+    }
+
     return supportedRepos.some(
         supportedRepo =>
             caseInsensitiveCompare(supportedRepo.owner, urlMetadata.owner) &&
