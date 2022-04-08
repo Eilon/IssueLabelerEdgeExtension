@@ -77,13 +77,6 @@ waitForElm('.js-issue-labels').then((labelGroup) => {
 
             // Send request to API to get label predictions for this issue or PR
 
-            // TODO: This
-
-            // chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
-            //     console.log(response.farewell);
-
-            //   });
-
             var currentGitHubPath = window.location.pathname; // something like: '/dotnet/maui/issues/5862' (no host, no hash/anchor, no query string)
             var pathParts = currentGitHubPath.split("/");
 
@@ -94,8 +87,7 @@ waitForElm('.js-issue-labels').then((labelGroup) => {
                     "repo": pathParts[2],
                     "number": pathParts[4]
                 },
-                predictions =>
-                {
+                predictions => {
                     actualLabelPredictions = predictions.labelScores;
 
                     var bestLabel = predictions['labelScores'][0]['labelName'];
@@ -115,17 +107,15 @@ waitForElm('.js-issue-labels').then((labelGroup) => {
             // }
 
 
-            }
+        }
     }
 });
 
 var actualLabelPredictions = undefined;
 
-function updatePredictions()
-{
+function updatePredictions() {
     var labelSelectionMenuResult = document.getElementsByClassName('js-filterable-issue-labels');
-    if (!labelSelectionMenuResult || !labelSelectionMenuResult.length || !actualLabelPredictions)
-    {
+    if (!labelSelectionMenuResult || !labelSelectionMenuResult.length || !actualLabelPredictions) {
         return;
     }
 
@@ -165,18 +155,15 @@ function updatePredictions()
             if (nameMatchResults) {
                 var nameElement = nameMatchResults.iterateNext();
                 var predictionSpan = document.createElement('span');
-                if (predictedAreaLabelMatch.score > 0.60)
-                {
+                if (predictedAreaLabelMatch.score > 0.60) {
                     foreColor = "white";
                     backColor = "green";
                 }
-                else if (predictedAreaLabelMatch.score > 0.20)
-                {
+                else if (predictedAreaLabelMatch.score > 0.20) {
                     foreColor = "white";
                     backColor = "orange";
                 }
-                else
-                {
+                else {
                     foreColor = "black";
                     backColor = "yellow";
                 }
@@ -200,16 +187,6 @@ function updatePredictions()
 }
 
 waitForElm('.js-filterable-issue-labels').then((labelSelectionMenu) => {
-
-    // TODO: Use actual prediction results
-    // var predictionApiResults =
-    //     [
-    //         { "labelName": "area/blazor \uD83D\uDD78️", "score": 0.850744 },
-    //         { "labelName": "area/setup \uD83E\uDE84", "score": 0.06806205 },
-    //         { "labelName": "area/tooling ⚙️", "score": 0.027669718 }
-    //     ];
-
-    //actualLabelPredictions = predictionApiResults;
 
     updatePredictions();
 });
