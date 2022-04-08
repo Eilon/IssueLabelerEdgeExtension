@@ -44,7 +44,7 @@ function areaLabelsEqual(area1, area2) {
     area1 = simplifyArea(area1);
     area2 = simplifyArea(area2);
 
-    // case-insensitive comparisong
+    // case-insensitive comparison
     return caseInsensitiveCompare(area1, area2);
 }
 
@@ -67,8 +67,7 @@ function getCurrentUrlMetadata() {
     }
 
     if (pathParts[0].length !== 0
-        || ((pathParts[3] !== "issues") && (pathParts[3] !== "pull"))
-    ) {
+        || ((pathParts[3] !== "issues") && (pathParts[3] !== "pull"))) {
         // We're not on an Issue or PR page
         return null;
     }
@@ -83,8 +82,7 @@ function getCurrentUrlMetadata() {
 function currentPageIsValidForPredictions() {
     var urlMetadata = getCurrentUrlMetadata();
 
-    if (!urlMetadata)
-    {
+    if (!urlMetadata) {
         return false;
     }
 
@@ -93,6 +91,13 @@ function currentPageIsValidForPredictions() {
             caseInsensitiveCompare(supportedRepo.owner, urlMetadata.owner) &&
             caseInsensitiveCompare(supportedRepo.repo, urlMetadata.repo)
     );
+}
+
+function isAreaLabel(label) {
+    var normalizedLabel = label.toLocaleLowerCase();
+    return normalizedLabel.startsWith("area/")
+        || normalizedLabel.startsWith("area-")
+        || normalizedLabel.startsWith("area:");
 }
 
 if (currentPageIsValidForPredictions()) {
@@ -107,7 +112,7 @@ if (currentPageIsValidForPredictions()) {
                 const element = labelGroup.childNodes[index];
                 if (element.tagName === "A") {
                     var labelName = element.getAttribute("data-name");
-                    if (labelName.startsWith("area/")) {
+                    if (isAreaLabel(labelName)) {
                         foundAreaLabels.push(
                             {
                                 "element": element,
