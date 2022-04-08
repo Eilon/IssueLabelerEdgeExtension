@@ -122,14 +122,7 @@ if (currentPageIsValidForPredictions()) {
                 }
             }
 
-            if (foundAreaLabels.length > 0) {
-                // If we have at least one area label applied, great! Just highlight the area labels and we're done
-                for (let index = 0; index < foundAreaLabels.length; index++) {
-                    const foundAreaLabel = foundAreaLabels[index];
-                    foundAreaLabel.element.style.border = "3px dashed green";
-                }
-            }
-            else {
+            if (foundAreaLabels.length === 0) {
                 // If there are no area labels applied, show a message, and also go get predictions ready
                 var noAreaAlertSpan = document.createElement('span');
                 noAreaAlertSpan.innerText = "Needs area!";
@@ -140,7 +133,7 @@ if (currentPageIsValidForPredictions()) {
                 noAreaAlertSpan.style.fontWeight = 400;
                 labelGroup.appendChild(noAreaAlertSpan);
 
-                // Send request to API to get label predictions for this issue or PR
+                // Send request to service worker to make API call to get label predictions for this issue or PR
 
                 var urlMetadata = getCurrentUrlMetadata();
 
@@ -153,14 +146,13 @@ if (currentPageIsValidForPredictions()) {
                     },
                     predictions => {
                         if (predictions.error) {
-                            console.log("ERROR RETRIEVING PREDICTIONS" + predictions.error);
+                            console.error("ERROR RETRIEVING PREDICTIONS" + predictions.error);
                             noAreaAlertSpan.innerText = "ERROR: " + predictions.error;
                         }
                         else {
                             actualLabelPredictions = predictions.labelScores;
 
                             var bestLabel = predictions['labelScores'][0]['labelName'];
-                            console.log("Predicting: " + bestLabel);
                             noAreaAlertSpan.innerText = "Consider: " + bestLabel;
 
                             updatePredictions();
