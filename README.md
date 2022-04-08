@@ -18,6 +18,12 @@ How to install:
 1. Open the list of labels to see the top 3 predictions, along with the confidence of those:<br/><img width="247" alt="image" src="https://user-images.githubusercontent.com/202643/162540792-6280b8dd-3006-42d4-8f1d-5b4ca703df29.png">
 1. You can select any of the predicted area labels, or of course select any other labels as you normally would.
 
+If you already have the extension and want to update:
+
+1. Update your local copy of the extension by fetching again from this repo using Git, or download the ZIP and overwrite the local files.
+1. In the browser extension list click **Reload** for this extension:<br />![image](https://user-images.githubusercontent.com/202643/162541864-534dc20c-8d2d-4c48-b15b-8e9305ef2bae.png)
+
+
 Coming soon: install directly from browser extension gallery.
 
 Feedback, questions, or concerns? Please log an issue in this repo!
