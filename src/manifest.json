@@ -21,7 +21,8 @@
         {
             "matches": [
                 "https://github.com/*",
-                "https://*.github.com/*"
+                "https://*.github.com/*",
+                "https://*.azurewebsites.net/*"
             ],
             "js": [
                 "content-scripts/content.js"
