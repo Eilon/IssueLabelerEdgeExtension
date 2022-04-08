@@ -204,12 +204,12 @@ if (currentPageIsValidForPredictions()) {
             // of labels, the best (highest) prediction is inserted to the top position last, thus appearing first in the list.
             predictedAreaLabelMatches.sort((a, b) => a["score"] - b["score"]);
 
+            addLabelSectionText(labelSelectionMenu, "Other labels");
+
             for (let index = 0; index < predictedAreaLabelMatches.length; index++) {
                 const predictedAreaLabelMatch = predictedAreaLabelMatches[index];
 
                 var labelElement = predictedAreaLabelMatch["element"];
-
-                labelElement.style.border = "2px solid purple";
 
                 var nameMatchResults = document.evaluate(".//span[@class='name']", labelElement);
                 if (nameMatchResults) {
@@ -217,16 +217,18 @@ if (currentPageIsValidForPredictions()) {
                     var predictionSpan = document.createElement('span');
                     if (predictedAreaLabelMatch.score > 0.60) {
                         foreColor = "white";
-                        backColor = "green";
+                        backColor = "#00ff00";
                     }
                     else if (predictedAreaLabelMatch.score > 0.20) {
                         foreColor = "white";
-                        backColor = "orange";
+                        backColor = "#ffa500";
                     }
                     else {
                         foreColor = "black";
-                        backColor = "yellow";
+                        backColor = "#ffff00";
                     }
+
+                    labelElement.style.border = `solid 5px ${backColor}40`;
 
                     predictionSpan.style.fontWeight = "bold";
                     predictionSpan.style.color = foreColor;
@@ -243,6 +245,7 @@ if (currentPageIsValidForPredictions()) {
                 labelSelectionMenu.insertBefore(labelElement, labelSelectionMenu.firstChild);
             }
 
+            addLabelSectionText(labelSelectionMenu, "Area label predictions");
         }
     }
 
@@ -250,5 +253,15 @@ if (currentPageIsValidForPredictions()) {
         // When the issue/PR label menu opens, update the predictions
         updatePredictions();
     });
+
+}
+
+function addLabelSectionText(labelMenu, text)
+{
+    var labelSectionDiv = document.createElement('div');
+    labelSectionDiv.style.margin = "3px";
+    labelSectionDiv.style.fontWeight = 500;
+    labelSectionDiv.innerText = text;
+    labelMenu.insertBefore(labelSectionDiv, labelMenu.firstChild);
 
 }
