@@ -2,11 +2,16 @@
 
 Browser extension for Microsoft Edge or Google Chrome to predict area labels for .NET GitHub repos.
 
-Supported repos:
-* https://github.com/dotnet/maui
-* https://github.com/dotnet/aspnetcore
+## Supported GitHub repos
 
-How to install:
+The extension will only activate on GitHub pages for issues and pull requests for these repos:
+
+1. https://github.com/dotnet/maui
+1. https://github.com/dotnet/aspnetcore
+
+
+## Installation and update
+
 1. Clone this repo or download the repo as a ZIP
 1. Go to the list of browser extensions for your browser:
    * In Edge navigate to <a href="edge://extensions/" target="_blank">edge://extensions/</a>
@@ -26,4 +31,10 @@ If you already have the extension and want to update:
 
 Coming soon: install directly from browser extension gallery.
 
+## Feedback and issues
+
 Feedback, questions, or concerns? Please log an issue in this repo!
+
+## Privacy Policy
+
+No information, personal or otherwise, of any kind, will be stored by this application. For supported GitHub repositories (see above) the extension will transmit only the item's repo owner, repo name, and issue/PR number to a remote service to get the associated area predictions. None of these items contain personally identifiable information because they are all public issues on GitHub.
