@@ -153,6 +153,10 @@ if (currentPageIsValidForPredictions()) {
                             actualLabelPredictions = predictions.labelScores;
 
                             var bestLabel = predictions['labelScores'][0]['labelName'];
+
+                            // Fix GitHub MarkDown Emoji to show as Unicode emoji
+                            bestLabel = bestLabel.replace(":framed_picture:", "\u{1f5bc}");
+
                             noAreaAlertSpan.innerText = "Consider: " + bestLabel;
 
                             updatePredictions();

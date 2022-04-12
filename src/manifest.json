@@ -1,6 +1,6 @@
 {
     "name": "DotNet Issue Area Predictor",
-    "version": "0.0.0.1",
+    "version": "0.0.0.2",
     "manifest_version": 3,
 
     "description": "An extension to predict issue area labels on GitHub.",
